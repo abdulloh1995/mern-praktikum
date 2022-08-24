@@ -192,34 +192,28 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  new MenuCard(
-    'img/tabs/1.png',
-    'usual',
-    'Plan "Usual"',
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditatebeatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.',
-    10,
-    '.menu .container'
-  ).render()
+  axios.get('http://localhost:3000/menu')
+  .then((data) => {
+    data.data.forEach(({img, altimg, title, descr, price}) => {
+      new MenuCard(img, altimg, title, descr, price, '.menu .container').render()
+    })
+  })
 
-  new MenuCard(
-    'img/tabs/2.jpg',
-    'plan',
-    'Plan “Premium”',
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditatebeatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.',
-    20,
-    '.menu .container',
-    'menu__item'
-  ).render()
+  // const getRecource = async (url) => {
+  //   const res = await fetch(url)
 
-  new MenuCard(
-    'img/tabs/3.jpg',
-    'vip',
-    'Plan VIP',
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditatebeatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.',
-    30,
-    '.menu .container',
-    'menu__item'
-  ).render()
+  //   return await res.json()
+  // }
+
+
+  // getRecource('http://localhost:3000/menu')
+  // .then((data) => {
+  //   data.forEach(({img, altimg, title, descr, price}) => {
+  //     new MenuCard(img, altimg, title, descr, price, '.menu .container').render()
+  //   })
+  // })
+
+  
 
   // Form
   const forms = document.querySelectorAll('form')
